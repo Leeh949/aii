@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <title></title>
+  <style>
+    
+  </style>
+  <script>
+    let sum =0;
+    let count= 0;
+    let right= 0;
+    let wrong= 0;
+    // 누적할래?
+    confirm("누적할래?");
+    // 확인 버튼 후
+    while(true){
+      let input = prompt('누적할 점수? ');
+      
+
+    //취소눌럿을 때 종료
+
+    if(input === null){
+      break;
+    }
+    count ++;
+
+    
+    // 숫자로 변환
+    let num = Number(input);
+
+    //취소할 경우
+    if(isNaN(num)){
+      alert("숫자를 입력하세요");
+      wrong++;
+      continue;
+    }
+  
+    
+    // 정상입력이면 success++
+    sum+=num;
+    right++;
+  }123
+    //결과출력
+    document.writeln(count+"번 입력"+'<br>');
+    document.writeln("누적점수: "+sum+'<br>');
+    document.writeln("점수를 제대로 입력한 횟수: "+right+'<br>');
+    document.writeln("점수를 잘못 입력한 횟수: "+wrong);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
