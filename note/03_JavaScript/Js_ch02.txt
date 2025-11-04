@@ -1,0 +1,79 @@
+JavaScript
+ch02 기본문법
+2-1
+// 자료형: string, number, boolean, function, object(array), undefined
+var variable;
+console.log('1. variable타입: ',typeof(variable),'- 값: ',variable);
+variable= '이름은 \'홍길동\'입니다.';
+console.log('2. variable타입: ',typeof(variable),'- 값: ',variable);
+variable= -313131313131313.2323;
+console.log('3. variable타입: ',typeof(variable),'- 값: ',variable);
+variable=false;
+console.log('4. variable타입: ',typeof(variable),'- 값: ',variable);
+variable= function(){ 
+  alert('함수 속');
+};
+
+2-2 복합대입연산자
+ window.onload= function()
+   window.onload= function(){; // window가 메모리에서 load될 때 수행
+    let list = '';
+    list += '<ul>'; // list = list + '<ul>';
+    list += '<li>Python</li>';
+    list += '<li>웹표준</li>';
+    list += '</ul>';
+    document.body.innerHTML = list;
+    // document.writeln(list);
+    };
+2-3 confirm
+    answer= confirm('확인 취소 중 선택 : 수강신청하시겠습니까?'); // 페이지가 뜨기 전 확인하는 창
+    document.writeln('결과: '+answer+ '타입'+ typeof(answer)+'<br>');
+    /* 비교연산자 (==): 값이 같은지 여부(타입이 일치하지 않으면 타입을 일치시킨 후 같은지 여부)
+    비교연산자(===): 값과 타입이 같은 여부*/
+    // if (answer==''){
+    if (answer===''){
+      document.writeln("취소를 누르셨네"); // 라인복사 shift+alt+ 아래방향키
+    }
+    else{
+      document.writeln('비교연산자 ===은 타입과 값을 모두 비교'); // 라인이동: alt+ 아래 방향키 , 라인삭제 ctrl+ shift + k
+    }
+
+2-4 prompt
+
+   // 취소: null(object), 확인: 입력된 string이 return
+    let scoreStr= prompt("점수를 입력하세요: ", "0~100");
+    document.writeln('입력한 값: ' + scoreStr+ '타입' + typeof(scoreStr) + '<br>');
+    if(scoreStr == null){
+      alert('점수를 입력한 후 확인을 클릭하세요: ');
+    }else{
+      // 점수 숫자로 형변환 후 80점 이상이면 잘했다고 출력. 미만 시 분발해 출력
+      //let score= Number(scoreStr); // 문자> 숫자/ 형변환 불가한 경우 NaN/""이거나 null일 경우 0
+      let score = parseInt(scoreStr);
+      document.writeln('입력한 수: ' + score + '타입' + typeof(score)+'<br>');
+      if(isNaN(score)){ //score가 NaN인지 여부
+        document.writeln('수를 입력하세요: ');
+      }else{
+        // result = '잘했다' if score=80 else "분발해" : 파이썬 조건식81 문법
+        result= score>= 80 ? "잘했다" : "분발해"; // 삼항연산자: 조건? 참일경우 값 : 거짓일 경우 값
+        document.writeln(result);
+      }
+    }
+
+2-5 숫자형변환함수
+
+   str=100;
+   i = parseInt(str) 또는 i= Number(str)
+
+2-6 false값들
+// false로 해석되는 값: 0, "", NaN, null, undefine cf. []은 true
+var i;
+console.log(Boolean(i));
+console.log(Boolean(0));
+console.log(Boolean(NaN));
+console.log(Boolean(Number("a")));
+console.log(Boolean(""));
+console.log(Boolean((null)));
+console.log();
+console.log("0==false의 결과: ", 0==false);
+console.log("0===false의 결과: ", 0===false);
+
