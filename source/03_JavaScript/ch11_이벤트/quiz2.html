@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
   <title></title>
   <style>
-    h1 {cursor: pointer;}
+    
   </style>
   <script>
-    const whenClick = () => {
-      alert('click했네');
-      h1 = document.querySelector('h1');
-      h1.innerHTML= 'click했네';
-      h1.style.color='red';
-      h1.style.border= '1px soild orange';
-    }
+    window.onload=()=>{
+      const img = document.querySelector('img');
+      img.onmousedown = () =>{
+        img.src="ch11_img/but2.gif";
+      };
+      img.onmouseup =() =>{
+        img.src="ch11_img/but1.gif";
+      };
+    };
   </script>
 </head>
 <body>
-  <h1 onclick="whenClick()">Click해바</h1>
+  <img src="ch11_img/but1.gif" alt="mouse up" />
+
 </body>
 </html>

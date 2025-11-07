@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <title></title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <style>
+    
+  </style>
+  <script>
+    window.onload= function(){
+      document.querySelector('button').addEventListener('click', ()=>{
+      let id= document.querySelector('input[name=id]').value();
+      //idConfirmNonExist.html? id=입력한 id
+      // 작업의 결과를 약속하는 함수
+      fetch(`idConfirmExists.html?id=${id}`, {'method':'get'}).then()
+      .then(response=>{
+        if(!response.ok){
+          throw new Error(response.status); // 강제로 예외발생
+        }
+        return response.text();
+      })
+      .then(data =>{
+        document.querySelector('span#idConfirmResult').innerHTML= data.trim();
+      });
+    });
+    };
+  </script>
+</head>
+<body>
+  아이디 <input type="text" name="id" autocomplete="off">
+  <button>중복체크</button><br>
+  <span id="idConfirmResult"></span>
+</body>
+</html>
