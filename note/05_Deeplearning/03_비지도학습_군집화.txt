@@ -1,0 +1,68 @@
+points= [
+    [random.randint(40, 95), random.randint(140,195)],
+    [random.randint(40, 95), random.randint(140,195)],
+]
+
+print('초기 기준점: ', points)
+
+plt.plot(points[0][0],points[0][1], 'o', c='r', markersize=30)
+plt.plot(points[1][0],points[1][1], 'o', c='b', markersize=30)
+
+for i in range(1,10):
+    group0= []
+    group1= []
+    for d in data:
+        if dist(d, points[0])< dist(d, points[1]):
+            group0.append(d)
+        else:
+            group1.append(d)
+    
+    # 포인트 출력
+    
+    # group0의 중간점, group1의 중간점으로 points 업데이트
+    group0_mean_X= np.mean([d[0] for d in group0])
+    group0_mean_Y= np.mean([d[1] for d in group0])
+    points[0]= [group0_mean_X, group0_mean_Y]
+    group1_mean_X= np.mean([d[0] for d in group1])
+    group1_mean_Y= np.mean([d[1] for d in group1])
+    points[1]= [group1_mean_X, group1_mean_Y]
+    
+    print(i, '번째 points: ', points)
+    plt.plot(points[0][0],points[0][1], 'o', c='r')
+    plt.plot(points[1][0],points[1][1], 'o', c='b') 
+    
+    
+    
+
+plt.plot(points[0][0],points[0][1], '^', c='r', markersize=20)
+plt.plot(points[1][0],points[1][1], '^', c='b', markersize=20) 
+plt.xlim([40,95])
+plt.ylim([140,195])
+
+
+4. api(sklearn)
+sklearn: 머신러닝 패키지
+예측모델: 분류, 회귀, 군집분석 - fit(학습), predict(예측)
+변환모델: 전처리시 사용 ex. 인코딩, 스케일조정 - fit(학습), transform(변환함수), fit_transform(학 -> 변)
+
+# 군집분석 라이브러리가 경고 메세지(joblib 충돌) 출력할 경우
+# import os
+# os.environ['OMP_NUM_THREADS'] = '1'
+
+# 기준점(중심점)
+model.cluster_centers_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
