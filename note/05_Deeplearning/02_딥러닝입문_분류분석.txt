@@ -1,0 +1,65 @@
+딥러닝: 데이터의 규칙성을 추출
+응용분야: 글짜인식, 문장분류, 예측, 질병진단, 얼굴인식
+ML/DL의 종류
+지도학습(독립=입력변수, 타겟=종속변수)
+= 분류학습(타겟변수가 category 변수인 분석. 다중분류 vs 이진분류)
+비지도학습
+군집화
+강화학습
+지도학습에서의 딥러닝 프로그래밍 방식
+
+  2. 데이터 전처리 
+# 인코딩 종류
+# 라벨인코딩= 문자를 숫자로
+# 원핫인코딩= 고유한 값의 개수만큼 새로운 열을 만들고 해당범주에 해당하는 열에만 1을 나머지는 0
+data= np.array(['a','b','c','b','b'])
+print('원 데이터', data)
+from sklearn.preprocessing import LabelEncoder
+le= LabelEncoder()
+labeling_data= le.fit_transform(data)
+print('라벨인코딩된 데이터: ', labeling_data)  순서나 크기를 나타낼 때 사용
+one_hot_encoding_data= to_categorical(labeling_data)
+print('원핫인 코딩된 데이터: \n', one_hot_encoding_data) 이미지 학습할 때 사용
+
+ 3. 모델 구성
+model= Sequential()
+model.add(Input(shape=(1,)))
+model.add(Dense(38,activation='sigmoid')) # 활성화 함수: relu, elu, tanh, sigmoid
+model.add(Dense(64, activation='elu'))
+model.add(Dense(32, activation='elu'))
+model.add(Dense(19, activation='softmax')) dense로 인해 러닝을해서 예측폭을 줄였다 늘렸다 조절해서 다룬다 
+model.summary()
+
+4절
+회귀분석에서의 loss: mse, rmse, mae
+다중 분류분석에서의 loss: categorical_crossentropy 이진분류 sigmoid binary_crossentropy
+
+model.compile(loss='categorical_crossentropy', optimizer="adam", metrics=['accuracy'])
+
+5절
+hist= model.fit(x_train, Y_train, epochs=300, batch_size=10,
+               validation_data=(x_val, Y_val), verbose=2)
+x_train, Y_train 을 러닝한다 batch_size=10 사이즈가 90이니 90개를 10번씩 끊어서  교육 이게 == epochs =1
+
+6절
+# 학습과정 표시하기
+import matplotlib.pyplot as plt
+fig, loss_ax = plt.subplots(figsize=(10,6))
+loss_ax.plot(hist.history['loss'],'y',label='train_loss')
+loss_ax.plot(hist.history['val_loss'],'r',label='val_loss')
+acc_ax= loss_ax.twinx() #
+acc_ax.plot(hist.history['accuracy'],'g',label='train_accuracy')
+acc_ax.plot(hist.history['val_accuracy'],'b',label='val_accuracy')
+
+loss_ax.set_xlabel('epoch')
+loss_ax.set_ylabel('loss')
+acc_ax.set_ylabel('accuracy')
+loss_ax.legend(loc='upper left')
+acc_ax.legend(loc='center right')
+plt.show()
+
+
+
+
+
+

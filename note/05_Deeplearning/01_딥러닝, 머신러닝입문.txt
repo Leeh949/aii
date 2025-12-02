@@ -43,3 +43,18 @@ model.predict(np.array([[0],
 # 5. 모델 학습시키기 - 셀1번만 실행
 hist = model.fit(scaled_data_C, scaled_data_F, epochs=1000, verbose=2)
             # 독립변수(훈련data) 타겟변수(훈련data) 학습횟수  학습시출력여부
+# 6. 모델 과정 시각화
+hist.history.keys() 키 값이름 구하기 
+
+plt.plot(hist.history['loss'], 'r',label='loss',)
+plt.plot(hist.history['mae'], 'b',label='mae',)
+plt.legend()
+plt.xlabel('epoch')
+plt.ylabel('value')  그래프로 표시 
+
+y_hat= model.predict([scaled_data_C])
+for h, y in zip(y_hat[::20], scaled_data_F):
+    print(h,y)
+ = y_hat 값에 예측값 저장
+예측값 20번중 한 개꼴로 실제값이랑 비교 그다음 결과 확인
+
