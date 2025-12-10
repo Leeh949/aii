@@ -1,0 +1,89 @@
+JavaScript
+ch03 조건문
+1. if문
+<script>
+    // date: 기본객체(내장객체)라서 
+    //const date= new date(); // new 생성자함수를 호출하여 객체를 생성
+    //const hour = date.getHours(); // 0~23시
+    const hour = new Date().getHours();
+    if(hour <12 ){
+      document.writeln('상쾌한 오전입니다<br>');
+      document.writeln('<img src="ch03_img/am.jpg" alt="am사진">');
+    }else{
+      document.writeln('따스한 오후입니다.<br>');
+      document.writeln('<img src="ch03_img/pm.jpg" alt="pm사진">');
+    }
+  </script>
+
+풀이
+
+ 지금 시간중 Hours만 hour에 저장
+조건문 hour가 12보다 작으면 if 출력 아니면 else문 출력
+
+
+
+2. switch문
+su= parseInt(prompt('반드시 숫자를 입력하세요: '));
+    // switch안에 올 수 있는 값은 수나 문자, boolean모두 가능
+
+    switch(su%2){
+      case 0: document.writeln("짝수"); break;
+      case 1:
+      case -1: document.writeln("홀수"); break;
+      default: document.writeln('수를 입력해주세요:');
+    }
+    // if(su%2==1 || su%2==-1){
+    //   document.writeln('홀수');
+    // }
+    // else if(su%2==0){
+    //   document.writeln('짝수: ');
+    // }
+    // else{
+    //   document.writeln('수를 입력하라니까요!');
+    // }
+
+풀이: 유저에게 입력받아서 입력받은 값을 정수로 형변환
+형 병환 한 정수를 su에 적용
+
+switch문을 사용해서 if였으면 길게 할 걸 줄 일 수 있다 
+
+su%2 값이 0이면 짝수 출력 1이면 빈값 -1이라면 홀수 출력
+
+3. switch문 사용해서 요일별 배경색 지정 
+
+document.writeln('<h1>요일에 따른 배경색 지정</h1>');
+    var week = new Date().getDay();
+    switch(week){
+      case 0: document.body.style = 'background-color: #ff0000'; break;
+      case 1: document.bgColor = 'orange'; break;
+      case 2: document.body.style = 'background-color: yellow'; break;
+      case 3: document.body.style = 'background-color: green'; break;
+      case 4: document.body.style = 'background-color: blue'; break;
+      case 5: document.body.style = 'background-color: navy'; break;
+      case 6: document.body.style = 'background-color: violet'; break;
+    
+    }
+풀이: 현재 날짜 정보를 받아 일수만 week에 저장 그리고 그 요일에 따라 배경색 설정한다
+
+4. 삼항연산자
+let num1= 20;
+let num2= 21;
+let difference = (num1 > num2) ? num1 - num2 : num2 - num1; 차이 값 저장
+msg = (num1 > num2) ? ('첫 번째 수가' + difference +'만큼 더 크다'):
+                      (num2> num1)?'두 번째수가 '+ difference +'만큼 더 크다':
+                                  '두수는 같다';
+console.log(msg);
+풀이 num1이 num2보다 큰 것이 참이면  num1 - num2출력 거짓이면  num2 - num1 출력
+msg도 똑같다 
+
+
+
+
+
+
+
+
+
+
+
+

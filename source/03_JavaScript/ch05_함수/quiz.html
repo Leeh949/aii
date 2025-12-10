@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <title></title>
+  <style>
+    body {
+      background-image: url(ch05_img/img01.png);
+      background-size: 100%;
+      color: yellow;
+      font-size: 20px;
+    }
+  </style>
+
+  <script>
+    let img = ['url(ch05_img/img01.png)','url(ch05_img/img02.png)','url(ch05_img/img03.png)'];
+    let color = ['yellow','white', '#00FF00'];
+    let sec = 0;
+    let index = 0;
+
+    function changeScreen() {
+      sec++;
+      // 화면 바뀌는 동안 출력될 문구? 메세지
+      document.body.innerHTML = new Date() + '<br><br>';
+      document.body.innerHTML += sec + '초 지남<br>';
+      
+      // 10초마다 배경, 글자색 바꾸기
+      if (sec % 1 == 0) {
+        index++;
+        if (index >= img.length) index = 0;
+        document.body.style.backgroundImage = img[index];
+        document.body.style.color = color[index];
+      }
+    }
+
+    // 1초마다 실행
+    let id = setInterval(changeScreen, 1000);
+    // 타이머 종료 
+    setTimeout(() => {clearInterval(id), document.body.innerHTML +='타이머종료'},30000);
+  </script>
+</head>
+<body>
+</body>
+</html>

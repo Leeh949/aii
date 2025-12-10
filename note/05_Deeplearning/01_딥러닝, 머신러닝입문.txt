@@ -1,0 +1,60 @@
+딥러닝 회귀분석
+
+1. 딥러닝/머신러닝 프로그램 방식
+데이터 확보 및 생성
+데이터 전처리: 스케일 조정, 훈련데이터셋(학습데이터셋), 검증데이터셋, 시험데이터셋
+모델구성
+모델 학습 과정 설정
+모델 학습시키기(훈련, 검증데이터셋)
+모델 평가(시험 데이터셋)
+모델 사용(입력값을 주어지면 예측값을 받기)
+
+# 1. 데이터 확보(생성)
+
+data_C= np.arange(100)
+data_C
+
+# 2. 데이터 전처리: 스케일 조정(컴퓨터에게 학습시키기 위해 정규화 / 표준화: 전체의 편차를 비슷하게)
+
+scaled_data_C = data_C/100 큰 수보다 작은수로 계산하는게 학습이 안정적이다
+scaled_data_F = data_F/100 
+print('독립변수: ', scaled_data_C)
+print('타겟변수: ',scaled_data_F)
+
+# 3. 모델 구성
+from tensorflow.keras.models import Sequential # 모델 생성함수
+from tensorflow.keras.layers import Input, Dense # 입력값과 출력값으로 layer층 지정
+model = Sequential() 모델 생성
+model.add(Input(shape=(1,))) # 입력(독립)변수의 shape
+model.add(Dense(1)) # 타겟(종속, 출력)변수의 갯수
+model.summary()
+
+# 4. 모델 학습 과정 설정
+model.compile(loss='mse', optimizer='rmsprop', metrics=['mae'])
+#                손실함수           옵티마이저          평가지표
+loss= 거름망구조 실제값과 허구값의 오차를 나타냄
+optimizer= loss값을 받아 최소화 하려고함
+metrics= 러닝이 잘 된 건지 알려준다
+
+# 학습전 예측
+model.predict(np.array([[0],
+                        [0.01]]))
+
+# 5. 모델 학습시키기 - 셀1번만 실행
+hist = model.fit(scaled_data_C, scaled_data_F, epochs=1000, verbose=2)
+            # 독립변수(훈련data) 타겟변수(훈련data) 학습횟수  학습시출력여부
+# 6. 모델 과정 시각화
+hist.history.keys() 키 값이름 구하기 
+
+plt.plot(hist.history['loss'], 'r',label='loss',)
+plt.plot(hist.history['mae'], 'b',label='mae',)
+plt.legend()
+plt.xlabel('epoch')
+plt.ylabel('value')  그래프로 표시 
+
+y_hat= model.predict([scaled_data_C])
+for h, y in zip(y_hat[::20], scaled_data_F):
+    print(h,y)
+ = y_hat 값에 예측값 저장
+예측값 20번중 한 개꼴로 실제값이랑 비교 그다음 결과 확인
+

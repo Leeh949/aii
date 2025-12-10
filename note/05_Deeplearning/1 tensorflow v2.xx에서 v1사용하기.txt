@@ -1,0 +1,85 @@
+1 tensorflow v2.xx에서 v1사용하기
+
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior() # tensorflow V2 비활성화하고 v1활성화
+import numpy as np
+import pandas as pd
+
+Tensorflow
+데이터 흐름 그래프(tensor 객체의 흐름)을 사용하는 수치 계산 라이브러리
+그래프는 node(연산)와 edge로 구성
+sess =tf.Session()을 이용해서 실행환경
+sess.run()을 통해서 실행결과를 확인
+
+# 1단계 : tensor(상수 노드 하나) 정의
+node1 = tf.constant('Hello, Tensorflow')
+# 2단계 : 세션(연산을 실행하는 환경) 생성
+sess = tf.Session()
+# 3단계 : 실제 실행 및 출력
+print(sess.run(node1))
+print(sess.run(node1).decode())
+
+# 간단한 연산 tensor 그래프
+# 1. 그래프 정의
+node1 = tf.constant(10, dtype=tf.float16)
+node2 = tf.constant(20, dtype=tf.float16)
+node3 = tf.add(node1, node2)
+# 2. 세션 생성
+sess = tf.Session()
+# 3.실행결괴
+print(sess.run([node1,node2,node3]))
+
+# 타입변경
+import numpy as np
+node1= tf.constant(np.array([1,2,3]), dtype=tf.int16)
+node2= tf.cast(node1, dtype=tf.float32)
+sess= tf.Session()
+print(sess.run([node1, node2]))
+
+# 평균값 계산: tf.reduce_mean()
+data= np.array([1.,2.,3.,4.])
+m= tf.reduce_mean(data)
+sess= tf.Session()
+print(sess.run(m))
+
+# tf.random_normal([size]): 평균이 0이고 표준편차가 1인 난수 size개 발생
+w= tf.random_normal([3])
+sess= tf.Session()
+sess.run(w)
+
+# 변수 코드
+w= tf.Variable(tf.random_normal([1]))
+sess= tf.Session()
+sess.run(tf.global_variables_initializer())
+sess.run(w)
+
+# tensor 그래프 정의
+# 데이터 셋 확보
+x = np.array([1,2,3])
+y = np.array([2,3,4])
+# weight와 bias
+W = tf.Variable(tf.random.normal([1]), name='weight')
+b = tf.Variable(tf.random.normal([1]), name='bias')
+# Hat, Hypothesis : 결과는 numpy 배열
+H = W * x + b
+# cost function (손실함수 : mse )
+cost = tf.reduce_mean(tf.square(H-y))
+'''
+학습목적 : cost가 최소가 되는 W, b를 찾는 것
+cost 함수는 2차함수이므로 곡선 그래프. 곡선위 미분값이 0이 되는 방향
+(경사하강법GradientDescent)
+'''
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+train = optimizer.minimize(cost)
+# 세션 생성
+sess = tf.Session()
+# W, b 초기화
+sess.run(tf.global_variables_initializer())
+# 6000번 학습 (v2 에서의 fit함수)
+for step in range(6001):
+    _, cost_val, W_val, b_val = sess.run([train, cost, W, b])
+    if step%300==0:
+        print("{}번째 cost:{}, W:{}, b:{}".format(step, cost_val, W_val, b_val))
+
+# 최종적으로 나온 회귀식 H = W*x + b
+W_, b_ = sess.run([W, b])

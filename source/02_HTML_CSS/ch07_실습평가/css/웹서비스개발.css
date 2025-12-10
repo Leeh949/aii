@@ -1,0 +1,97 @@
+*{margin: 0; padding:0;}
+li{list-style: none;}
+a{text-decoration: none; color: black; display: block; }
+
+#wrap{
+    width: 1000px;
+    margin: 20px auto;
+}
+
+nav{
+    overflow: hidden;
+    text-align: center;
+}
+
+nav ul li{width: 85px; margin: 10px; padding: 5px 10px;}
+nav #nav_left ul li{
+    float: left;
+}
+nav #nav_right ul li{
+    float: right;
+}
+nav #nav_left ul li:first-child{
+    border: 1px solid gray;
+    background-color: #FDEADA;
+}
+#content{
+    overflow: hidden;
+}
+
+#content #title{
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+#content #lnb{
+    float: left;
+    width:180px;
+    margin-left: 15px;
+}
+#content #lnb ul li{
+    line-height: 30px;
+    padding:2px 30px;
+    border:1px solid gray;
+    font-size: .9em;
+}
+#content #lnb ul li:nth-child(4) {
+  background-color: #FDEADA;
+  font-weight: bold;
+}
+
+#content #my_content{
+    float: left;
+    width: 750px;
+    border: 1px solid gray;
+    
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+#content #my_content #sub_title{
+    border-bottom: 1px solid gray;
+    height: 30px;  line-height: 30px;
+    font-size: 0.9em;
+    padding-left: 10px;
+}
+#content #my_content #modify table{
+    width: 70%; margin: 30px auto;
+}
+#content #my_content #modify table td{
+    padding:3px;
+}
+#content #my_content #modify table input[type='text'],
+#content #my_content #modify table input[type='email']{
+    width:90%; height: 25px;
+    border: 1px solid gray;
+}
+#content #my_content #modify table input[type='submit']{
+    padding:2px 10px;
+}
+#button_{
+  text-align: center; /* 가로 가운데 정렬 */
+  margin-top: 40px;   /* 위쪽 여백 */
+  margin-bottom: 30px;
+  
+}
+#button_ input[type="submit"] {
+  width: 50px;               /* 전체 중 80% 폭 */
+  font-size: 1em;
+}
+
+footer{
+    width: 1000px;
+    border:1px solid gray; box-sizing: border-box;
+    line-height: 30px;
+    text-align: center;
+    background-color: #FDEADA;
+    margin: 0 auto;
+}

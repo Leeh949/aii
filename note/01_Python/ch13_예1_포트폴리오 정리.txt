@@ -1,0 +1,41 @@
+1) 한글설정: sns.set(style='white', rc={'figure.figsize':(12,3)})
+	plt.rc('font', family='Malgun Gothic') # 윈도우즈
+	plt.rc('axes', unicode_minus=False) # 축의 - 깨짐 방지
+
+2) pd.options.display.max_columns=22 # 최대 display가능한 열수 수정
+df_first.tail() 끝 행에서 출력
+
+df_first.isna().sum()
+
+sns.heatmap(df_first_heat, annot=True, fmt='d', cmap=Greens, cbar=False)
+# annot 칸 안에 실제 숫자를 표시(True), False 색만 보이고 숫자는 안보임
+# fmt = format에 약자 ='d'는 정수를 표시한다의 정의
+# cmap = colormap의 약자 Greens을 약한색부터 진한색까지 표시
+# cbar= 범례를 표기하는 함수
+
+3) df_last.info() 데이터타입, 결측치확인
+df_last.isna().sum() = 결측치 갯수확인
+df_last.notna().sum()= 열별 결측치를 제외한 갯수
+
+4) df_last.loc[0,(분양가격(제곱미터)]
+df_last.groupby('지역명')['분양가격(제곱미터)'].mean() < 에러 # 타입이 달라서 str
+
+pd.to_numeric(df_last['분양가격(제곱미터)'], errors= 'coerce').isna().sum()
+^- pd.to_numeric은 문자형타입을 정수, 실수형 타입으로 강제변환한다
+ errors = 'coerce'는 ' ', nan, '' 을 결측값으로 바꾼다
+
+df_last[df_last['분양가격(제곱미터)'].str.strip()== ''].shape < 공백제거
+
+df_last[df_last['분양가격(제곱미터)'].notnull() &
+    (df_last['분양가격(제곱미터)'].str.find(',')!=-1) ]  notnull 결측치가 아닌값을 True행으로,
+find(',') ,를 찾아서 ,있는 행은 True만든다
+
+df_last.loc[df_last['분양가격(제곱미터)'].str.strip()== '', '지역명'].value_counts
+분양가격이 비어있는 값을 각 지역에 몇개가 있는 지 갯수를 확인해준다
+
+temp = '12,345'
+temp.replace(',', '')
+, 콤마를 없애는 방법
+
+
+

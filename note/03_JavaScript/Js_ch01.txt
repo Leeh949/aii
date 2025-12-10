@@ -1,0 +1,7 @@
+Java Script
+ch01
+   document.writeln('<h2>첫 번째 메세지</h2>') // js 출력
+   var = 전역변수 let 지역변수
+   고의적 error를 내면 alert에서 에러전까지 출력
+   
+   <script src="3.js"></script> js 파일 불러오기
