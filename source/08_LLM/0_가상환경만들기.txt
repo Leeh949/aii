@@ -45,7 +45,8 @@ pip install python-dotenv
 pip install python-decouple
 pip install langchain-anthropic
 
-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
+pip install openai
+pip install matplotlib # pillow, numpy
 
 
 
