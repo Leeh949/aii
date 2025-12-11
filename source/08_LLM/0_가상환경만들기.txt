@@ -48,6 +48,8 @@ pip install langchain-anthropic
 pip install openai
 pip install matplotlib # pillow, numpy
 
+pip install streamlit
+pip install sounddevice scipy # 마이크 입력 녹음하여 전송하기
 
 
 
