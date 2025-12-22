@@ -1,8 +1,8 @@
 Editor Option: VIM
 Custom Editor Path: 
 Default Branch Option:  
-Path Option: Cmd
-SSH Option: ExternalOpenSSH
+Path Option: CmdTools
+SSH Option: OpenSSH
 Tortoise Option: false
 CURL Option: WinSSL
 CRLF Option: CRLFAlways
